@@ -1,0 +1,60 @@
+div {
+    border: solid 1px red;
+    padding: 20px 0;
+}
+
+.red {
+    background-color: red;
+}
+.big {
+    width: 500px;
+    height: 500px;
+}
+.yellow {
+    background-color: yellow;
+}
+
+.custom-leave-active {
+position: absolute;
+}
+.custom-enter, .custom-leave-to
+{
+transform: translateX(300px);
+opacity: 0;
+}
+.item {
+    transition: all .8s ;
+}
+  
+
+.hello-enter-active {
+animation: bounce-in .5s;
+}
+.hello-leave-active {
+animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+0% {
+    transform: scale(0);
+}
+50% {
+    transform: scale(1.5);
+}
+100% {
+    transform: scale(1);
+}
+}
+
+.list-item {
+display: inline-block;
+margin-right: 10px;
+transition: all 1s ease-in-out;
+}
+
+.list-leave-active {
+    position: absolute;
+}
+.list-enter, .list-leave-to /* .list-leave-active до версии 2.1.8 */ {
+opacity: 0;
+transform: translateY(30px);
+}
