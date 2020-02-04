@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.19d7208b0a38143a4818.css?a117cf41bc6aeb03a493">
+</head>
+<body>
+    <main >
+        <h1 class="main">{{mess}}</h1>
+        <div class="main2">
+            <span v-bind:title='mess'>наведи и держи</span>
+            <input type="text" v-model='mess'>
+        </div>
+        <div class="main3">
+            <p>{{mess}}</p>
+            <button v-on:click='doubleMess'>удвоить</button>
+            <button v-on:click='refreshMess'>сбросить</button>
+        </div>
+        <div class="main4">
+            <transition-group 
+            tag='ol'
+            v-if='seen'
+            name="custom"
+            >
+                <li 
+                is='todo-item'
+                v-for="(item, index) in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+                v-on:remove='groceryList.splice(index, 1)'
+                v-on:get-value='getValue'
+                class="item"
+                ></li> 
+            </transition-group>
+            <transition-group 
+            v-else
+            tag='ul'
+            name='custom'
+            >
+                <todo-item v-for="item in findList"
+                v-bind:todo="item"
+                v-bind:key="item.id"></todo-item>
+            </transition-group>
+            <form name="addTodo" v-on:submit.prevent='moreTodo'>
+                <input v-model='todoToAdd' type="text">
+                <button type="submit">добавить</button>
+            </form>
+            <input type="text" v-model='search' placeholder="найти элемент списка">
+            <p>заменим имеющийся элемент</p>
+            <form name="setTodo" v-on:submit.prevent='switchTodo'>
+                <input type="text" name="num" placeholder="введи номер элемента">
+                <input type="text" name="newTodo" placeholder="введи новое здачение">
+                <button type="submit">заменить</button>
+            </form>
+        </div>
+        <div class="main5">
+            <p>{{mess}} <input type="text" v-model='mess'></p>
+            <p>{{reversedMess}}</p>
+        </div>
+        <div class="main6">
+            <p>{{firstName}} <input type="text" v-model='firstName'></p>
+            <p>{{lastName}} <input type="text" v-model='lastName'></p></p>
+            <p>{{fullName}} <input type="text" v-model='fullName'></p></p>
+        </div>
+        <div id="watch-example">
+            <p>
+                Задайте вопрос, на который можно ответить «да» или «нет»:
+                <input v-model="question">
+            </p>
+            <p>{{ answer }}</p>
+            <img v-bind:src="src" alt="">
+        </div>
+        <div class="main7">
+            <div class="red big" v-bind:class="classObject"></div>
+            <button v-on:click="switchColor">сменить цвет</button>
+        </div>
+        <div class="main8">
+            <template v-if='awesomeEl'>
+                <p>я классный элемент с текстом</p>
+                <p>я еще один классный</p>
+                <p>а я, возможно, самый классный</p>
+            </template>
+            <template v-else-if='secretEl'>
+                <p>я секрет</p>
+            </template>
+            <p v-else>а я другой элемент, круто да? поменялся не текст внутри элемента, а сам элемент</p>
+            <button v-on:click='changeEl' v-on:keypress='showSecret'>поменяем?</button>
+        </div>
+        <div class="main9">
+            <input type="text" v-model='text'>
+            <button v-on:click='say(text, $event)'>To the консоль!</button>
+        </div>
+        <div class="main10">
+            <form v-on:submit.prevent='addName'>
+                <input type="text" v-model='name' placeholder="введите имя">
+                <button type="submit">добавить имя</button>
+            </form>
+            <template v-for='someone in peoples'>
+                <input type="checkbox" v-bind:id="someone.id" v-bind:value="someone.name" v-model="checkedNames">
+                <label v-bind:for="someone.id">{{someone.name}}</label>
+            </template>
+            <br>
+            <span>Отмеченные имена: {{ checkedNames }}</span>
+        </div>
+        <div class="main11">
+            <input type="checkbox" 
+            id='ns' 
+            v-model='checked'
+            true-value='привет'
+            false-value='пока'>
+            <label for="ns">{{checked}}</label>
+            <input type="radio" id='one' v-bind:value="raz" v-model='picked'>
+            <label for="one">{{raz}}</label>
+            <input type="radio" id='two' v-bind:value="dva" v-model='picked'>
+            <label for="two">{{dva}}</label>
+            <p>{{checked}} {{picked}}</p>
+        </div>
+        <div class="main12">
+            <custom-input v-model="searchText"></custom-input>
+            <p>{{searchText}}</p>
+        </div>
+        <div class="main13">
+            <div style="display: flex;">
+                <button 
+                v-for='post in posts'
+                v-bind:key='post.id'
+                v-on:click='getCurrentPost(post)'
+                >{{post.title}}</button>
+            </div>
+            <div v-if='!currentPost'>Выбери пост сучка)</div>
+            <blog-post
+            v-if='currentPost.id === post.id'
+            v-for='post in posts'
+            v-bind:post='post'
+            v-bind:key='post.id'
+            ></blog-post>
+            
+            <post-form 
+            v-on:postit='postit'
+            v-bind:data='formData'>этот текст передается слоту внутри кастомного элемента</post-form>
+            <p>форма внутри кастомного элемента 
+                а вводимые данные мы реактивно получаем снаружи
+            </p>
+            <p>title: {{formData.title}}</p>
+            <p> content: {{formData.content}}</p>
+        </div>
+        <div class="main14">
+            <button
+                v-for="tab in tabs"
+                v-bind:key="tab.name"
+                v-bind:class="['tab-button', { active: currentTab.name === tab.name }]"
+                v-on:click="currentTab = tab"
+            >{{ tab.name }}</button>
+
+            <component
+                v-bind:is="currentTab.component"
+                class="tab"
+            ></component>
+        </div>
+        <div class="main15">
+            <transition name='hello' mode='out-in'>
+                <button 
+                v-on:click='changeState' 
+                v-bind:key='buttonState'
+                >{{buttonMessage}}</button>
+            </transition>
+        </div>
+        <div id="list-demo">
+            <button v-on:click="add">Добавить</button>
+            <button v-on:click="remove">Удалить</button>
+            <button v-on:click='shake'>Перемешать</button>
+            <transition-group name="list" tag="p">
+              <span v-for="item in items" v-bind:key="item" class="list-item">
+                {{ item }}
+              </span>
+            </transition-group>
+        </div>
+    </main>
+    <script type="module" src="js/main.a8548ee4c45d1012a58a.js?a117cf41bc6aeb03a493"></script>
+</body>
+</html>
