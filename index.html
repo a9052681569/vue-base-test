@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/main.19d7208b0a38143a4818.css?a117cf41bc6aeb03a493">
+    <link rel="stylesheet" href="css/main.19d7208b0a38143a4818.css?d6f9838f83c11fcf52f8">
 </head>
 <body>
     <main >
@@ -45,14 +45,14 @@
                 v-bind:key="item.id"></todo-item>
             </transition-group>
             <form name="addTodo" v-on:submit.prevent='moreTodo'>
-                <input v-model='todoToAdd' type="text">
+                <input placeholder="добавь элемент" v-model='todoToAdd' type="text">
                 <button type="submit">добавить</button>
             </form>
             <input type="text" v-model='search' placeholder="найти элемент списка">
             <p>заменим имеющийся элемент</p>
             <form name="setTodo" v-on:submit.prevent='switchTodo'>
                 <input type="text" name="num" placeholder="введи номер элемента">
-                <input type="text" name="newTodo" placeholder="введи новое здачение">
+                <input type="text" name="newTodo" placeholder="введи новое значение">
                 <button type="submit">заменить</button>
             </form>
         </div>
@@ -61,9 +61,9 @@
             <p>{{reversedMess}}</p>
         </div>
         <div class="main6">
-            <p>{{firstName}} <input type="text" v-model='firstName'></p>
-            <p>{{lastName}} <input type="text" v-model='lastName'></p></p>
-            <p>{{fullName}} <input type="text" v-model='fullName'></p></p>
+            <input type="text" v-model='firstName'>
+            <input type="text" v-model='lastName'>
+            <input type="text" v-model='fullName'>
         </div>
         <div id="watch-example">
             <p>
@@ -90,8 +90,13 @@
             <button v-on:click='changeEl' v-on:keypress='showSecret'>поменяем?</button>
         </div>
         <div class="main9">
-            <input type="text" v-model='text'>
-            <button v-on:click='say(text, $event)'>To the консоль!</button>
+            <form v-on:submit.prevent='save(text, $event)'>
+                <input required type="text" v-model='text'>
+                <button>нажми и увидишь</button>
+            </form>
+            
+            <p>{{savedText}}</p>
+            
         </div>
         <div class="main10">
             <form v-on:submit.prevent='addName'>
@@ -130,7 +135,7 @@
                 v-on:click='getCurrentPost(post)'
                 >{{post.title}}</button>
             </div>
-            <div v-if='!currentPost'>Выбери пост сучка)</div>
+            <div v-if='!currentPost'>Выбери пост</div>
             <blog-post
             v-if='currentPost.id === post.id'
             v-for='post in posts'
@@ -179,6 +184,6 @@
             </transition-group>
         </div>
     </main>
-    <script type="module" src="js/main.a8548ee4c45d1012a58a.js?a117cf41bc6aeb03a493"></script>
+    <script type="module" src="js/main.51a9733c3b5d2feceaa7.js?d6f9838f83c11fcf52f8"></script>
 </body>
 </html>
